@@ -1,0 +1,64 @@
+`<!DOCTYPE html>
+<html xmnls:th="http://www.thymeleaf.org">
+
+<head>
+	<object th:include="fragments/fragment :: headerFragment"></object>
+	<title id="pageTitle">Tambah Pegawai</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+	<script th:src="@{/js/pegawai.js}"></script>
+</head>
+<style>
+
+	.card {
+		  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+		  max-width: 700px;
+		  margin: auto;
+		  text-align: center;
+		  font-family: calibri;
+		  font-size: 18px;
+		}
+	.title {
+		padding:75px;
+		 text-align: center;
+		  color: black;
+		  font-size: 18px;
+		}
+</style>
+<body>
+<nav th:replace="fragments/fragment :: navbar (navbarTitle='Tambah Pegawai')"></nav>
+	
+
+<div class="title">
+		<h2>SIPEG - Sistem Informasi Kepegawaian</h2>
+	<h1> Tambah Pegawai</h1>
+	
+</div>
+
+<div class="container-fluid">
+		<div class="row">
+			<span class="col-md-1"></span>
+			<div class="col-md-10">
+				<div class="card">
+					<div class="card-header" >
+					<h3>Tambah Pegawai</h3>
+					</div>
+					<div class="card-body">
+						<form th:fragment="form-pegawai" th:action=@{/pegawai/tambah} method="POST" th:object=${pegawai}>
+							<div th:include="~{fragments/form :: form-pegawai}"></div>
+							<div class="form-group">
+								<div class="float-right">
+									<button type="submit" class="btn btn-primary">Add</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+</body>
+</html>

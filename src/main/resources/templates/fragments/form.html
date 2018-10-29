@@ -1,0 +1,70 @@
+<div th:fragment="form-pegawai">
+	<div class="form-group row">
+		<label for="nama" class="col-sm-3 col-form-label">Nama</label>
+		<div class="col-sm-8">
+			<input type="text" name="nama" class="form-control" id="nama" th:value="*{nama}" placeholder="Nama Pegawai" required>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="deskripsi" class="col-sm-3 col-form-label">Tempat Lahir</label>
+		<div class="col-sm-8">
+			<input type="text" name="tempatLahir" class="form-control" th:value="*{tempatLahir}" id="tempatLahir" placeholder="Tempat Lahir" required>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="tanggalLahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+		<div class="col-sm-8">
+			<input type="date" name="tanggalLahir" class="form-control" id="tanggalLahir" th:value="*{tanggalLahir}" placeholder="Tanggal Lahir" required>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="tahunMasuk" class="col-sm-3 col-form-label">Tahun Masuk</label>
+		<div class="col-sm-8">
+			<input type="number" name="tahunMasuk" th:value="*{tahunMasuk}" class="form-control" id="tahunMasuk" placeholder="Tahun Masuk" required>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="provinsi" class="col-sm-3 col-form-label">Provinsi</label>
+			
+			<span th:if="*{instansi} == null">
+				<select id="provinsi" name="idProvinsi" onchange="showInstansi()" class="col-sm-8" required>
+					<option disabled selected>Pilih Provinsi</option>
+					<option th:each="provinsi : ${allProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}">Provinsi</option>
+				</select>
+			</span>
+			<span th:unless="*{instansi} == null">
+				<select id="provinsi" name="idProvinsi" onchange=" showInstansi()" class="col-sm-8" required>
+					<option  th:value="*{instansi.provinsi.id}" selected="selected" th:text="*{instansi.provinsi.nama}"></option>
+					<option th:each="provinsi : ${allProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}">Provinsi</option>
+				</select>
+			</span>
+	</div>
+	<div class="form-group row">
+		<label for="instansi" class="col-sm-3 col-form-label">Nama Instansi</label> 
+		<span th:if="*{instansi} == null">
+			<select id="instansi" th:field="*{instansi}" name="idInstansi" required>
+				<option value="Pilih Provinsi Terlebih Dahulu" disabled selected>Pilih Provinsi Terlebih Dahulu</option>
+				<option th:each="instansi : ${allInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}">Instansi</option>
+			</select>
+		</span>
+		<span th:unless="*{instansi} == null">
+			<select id="instansi" th:field="*{instansi}" name="idInstansi" onchange="showJabatan()" required>
+				<option th:value="*{instansi.id}" selected="selected" th:text="*{instansi.nama}" disabled></option>
+				<option th:each="instansi : ${allInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}">Instansi</option>
+			</select>
+		</span>
+	</div>
+	<div class="form-group">
+		<span th:each="jabatan, iterationStat : *{jabatan}" class="row">
+			<label for="jabatan" class="col-sm-3 col-form-label" th:style="${iterationStat.count} != 1 ? 'color:white;' : ''">Jabatan</label><br>
+			<select class="select-jabatan col-sm-8" name="jabatan" required>
+				<option value="Pilih Jabatan" disabled selected>Pilih Jabatan</option>
+				<option th:each="jabatan : ${allJabatan}" th:field="*{jabatan[__${iterationStat.index}__]}" th:value="${jabatan.id} ? ${jabatan.id} : -1" th:text="${jabatan.nama}"></option>
+			</select>
+			<button type="submit" class="btn btn-danger btn-sm" name="deleteRow" th:value="${iterationStat.index}" th:style="${iterationStat.count} == 1 ? 'display: none;' : ''"><i class="fas fa-minus"></i></button>
+			<button type="submit" class="btn btn-info btn-sm" name="addRow" th:style="${iterationStat.index != (iterationStat.size-1)} ? 'display:none;' : ''"><i class="fas fa-plus"></i></button>
+		</span>
+		<input hidden name="nip" th:field="*{id}">
+	</div>
+	
+</div>

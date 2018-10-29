@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmnls:th="http://www.thymeleaf.org">
+<head>
+	<object th:include="fragments/fragment :: headerFragment"></object>
+	<title id="pageTitle">Home</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	<style>
+		.title {
+		  padding:75px;
+		 text-align: center;
+		  color: black;
+		  font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar (navbarTitle='Tambah Jabatan')"></nav>
+
+	<div class="title">
+		<h2>SIPEG - Sistem Informasi Kepegawaian</h2>
+	<h3 th:text="' Pegawai dengan NIP '+ ${nip} + ' berhasil ditambahkan.'"></h3>
+	<a th:href="@{'/pegawai?nip=' + ${nip}}">Klik untuk Melihat</a>
+	
+</div>
+</body>
+</html>

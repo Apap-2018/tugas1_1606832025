@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmnls:th="http://www.thymeleaf.org">
+<head>
+	<object th:include="fragments/fragment :: headerFragment"></object>
+	<title id="pageTitle">Tambah Jabatan</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	<style>
+		.card {
+		  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+		  max-width: 700px;
+		  margin: auto;
+		  text-align: left;
+		  font-family: calibri;
+		  font-size: 18px;
+		}
+	.title {
+		padding:75px;
+		 text-align: center;
+		  color: black;
+		  font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar (navbarTitle='Tambah Jabatan')"></nav>
+	
+		<div class="title">
+				<h2>SIPEG - Sistem Informasi Kepegawaian</h2>
+			<h1> Tambah Jabatan</h1>
+			
+		</div>
+	
+	<br>
+	<div class="container-fluid">
+		<div class="row">
+			<span class="col-md-1"></span>
+			<div class="col-md-10">
+				<div class="card">
+					<div class="card-header">
+						<h3>Tambah Jabatan</h3>
+					</div>
+					<div class="card-body">
+						<div>
+							<form th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
+							 <div class="form-group">
+							    <label for="nama">Nama </label>
+							 	<input type="text" class="form-control" name="nama" placeholder="Nama Jabatan">
+   
+							 </div>	
+							 
+							 <div class="form-group">
+							    <label for="deskripsi">Deskripsi </label>
+							 	<input type="text" class="form-control" name="deskripsi" placeholder="Deskripsi Pegawai">
+							 </div>
+							 
+							 <div class="form-group">
+							    <label for="gajiPokok">Gaji Pokok </label>
+							 	<input type="text" class="form-control" name="gaji_pokok" placeholder="Gaji Pokok">
+							 </div>	
+							 
+							 <button type="submit" class="btn btn-secondary">Submit</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<br>
+		
+	
+</body>
+</html>

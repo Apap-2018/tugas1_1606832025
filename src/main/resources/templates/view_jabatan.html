@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmnls:th="http://www.thymeleaf.org">
+<head>
+	<object th:include="fragments/fragment :: headerFragment"></object>
+	<title id="pageTitle">Home</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+			
+		<style>
+		.card {
+		  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+		  max-width: 370px;
+		  margin: auto;
+		  text-align: center;
+		  font-family: calibri;
+		}
+		
+		.title {
+		  padding:75px;
+		 text-align: center;
+		  color: black;
+		  font-size: 18px;
+		}
+		
+		
+		a {
+		  text-decoration: none;
+		  font-size: 22px;
+		  color: blue;
+		  
+		  text-align: center;
+		}
+		
+		</style>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar (navbarTitle='Detail Jabatan')"></nav>
+	<div class="title">
+				<h2>SIPEG - Sistem Informasi Kepegawaian</h2>
+			<h1> Detail Jabatan</h1>
+			
+		</div>
+	<br>
+	<div class="card">
+					<div class="card-header">
+						<h3 th:text="${jabatan.nama}"></h3>
+							
+					</div>
+					<div class="card-body">
+						<div class="center" style="background-color:#FFFFFF" align="justify">
+							<h3 th:text="'Deskripsi : ' + ${jabatan.deskripsi}" ></h3>
+							<h3 th:text="'Gaji : Rp. ' + ${jabatan.gaji_pokok}"></h3>
+							<h3 th:text="'Total Pegawai : ' + ${jumlah}" ></h3>
+							<div>
+								<a th:href="@{'/jabatan/ubah/?idJabatan=' + ${jabatan.id}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Update Jabatan</a>
+								
+								<form th:action="@{/jabatan/hapus}" th:method="POST">
+									<input type="hidden" th:field="${jabatan.id}" name="idJabatan"/>
+   									<button type="submit" class="btn btn-secondary">Hapus</button>
+							 
+								</form>				
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			
+	
+</body>
+</html>

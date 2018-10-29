@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmnls:th="http://www.thymeleaf.org">
+<head>
+	<object th:include="fragments/fragment :: headerFragment"></object>
+	<title id="pageTitle">Home</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	 <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	
+	<style>
+	.card {
+	  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+	  max-width: 370px;
+	  margin: auto;
+	  text-align: center;
+	  font-family: calibri;
+	}
+	
+	.title {
+	  padding:75px;
+		 text-align: center;
+		  color: black;
+		  font-size: 18px;
+	}
+	
+	.nip{
+	  color: blue;
+	  font-size: 22px;
+	}
+	
+	.instansi{
+	  color: purple;
+	  font-size: 18px;
+	}
+	.isi{
+		font-size: 18px;
+	}
+	
+	.tombol {
+	  border: none;
+	  outline: 0;
+	  display: inline-block;
+	  padding: 8px;
+	  color: white;
+	  background-color: #000;
+	  text-align: center;
+	  cursor: pointer;
+	  width: 100%;
+	  font-size: 18px;
+	}
+	
+	a {
+	  text-decoration: none;
+	  font-size: 22px;
+	  color: black;
+	}
+	
+	button:hover, a:hover {
+	  opacity: 0.7;
+	}
+	</style>
+	
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar (navbarTitle='Tambah Jabatan')"></nav>
+	<br>
+	
+	<div class="title">
+				<h2>SIPEG - Sistem Informasi Kepegawaian</h2>
+			<h1> Detail Pegawai Tertua & Termuda</h1>
+			
+		</div>
+	<h2 th:text="' Detail Data Pegawai Termuda - '+ ${pegawaiTermuda.nip}" style="text-align:center"></h2>
+	<br>
+			<div class="card">
+			 <img src="/image/profile.jpg" alt="profile" style="width:50%">
+			 <h1 th:text="${pegawaiTermuda.nama}"></h1>
+			  <p class="nip" th:text="'NIP - ' + ${pegawaiTermuda.nip}"></p>
+			  <p class="instansi" th:text="${pegawaiTermuda.instansi.nama}"></p>
+			  <div th:each= "jabatan : ${jabatanMuda}">
+			    <p class="title" th:text="${jabatan.nama}" style="text-align:center"></p>
+			  </div>
+			  <div class="isi" style="margin: 24px 0;">
+			   <p th:text="'Tahun Masuk : ' + ${pegawaiTermuda.tahunMasuk}"></p>
+			   <p th:text="'TTL : ' + ${pegawaiTermuda.tempatLahir} + ', ' + ${pegawaiTermuda.tanggalLahir}"></p>
+			  
+			 </div>
+			 <p><button class="tombol">Contact</button></p>
+			</div>
+	<br>
+	<br>
+			
+	<h2 th:text="' Detail Data Pegawai Tertua - '+ ${pegawaiTertua.nip}" style="text-align:center"></h2>
+	<br>
+			<div class="card">
+			 <img src="/image/profile.jpg" alt="profile" style="width:50%">
+			 <h1 th:text="${pegawaiTertua.nama}"></h1>
+			  <p class="nip" th:text="'NIP - ' + ${pegawaiTertua.nip}"></p>
+			  <p class="instansi" th:text="${pegawaiTertua.instansi.nama}"></p>
+			  <div th:each= "jabatan : ${jabatanTua}">
+			    <p class="title" th:text="${jabatan.nama}" style="text-align:center"></p>
+			  </div>
+			  <div class="isi" style="margin: 24px 0;">
+			   <p th:text="'Tahun Masuk : ' + ${pegawaiTertua.tahunMasuk}"></p>
+			   <p th:text="'TTL : ' + ${pegawaiTertua.tempatLahir} + ', ' + ${pegawaiTertua.tanggalLahir}"></p>
+			  
+			 </div>
+			 <p><button class="tombol">Contact</button></p>
+			</div>
+	</body>
+</html>

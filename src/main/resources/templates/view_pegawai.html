@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmnls:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="../static/css/view_pegawai.css" th:href="@{/css/view_pegawai.css}" rel="stylesheet" />
+	<object th:include="fragments/fragment :: headerFragment"></object>
+	<title id="pageTitle">View Pegawai</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	<style>
+	.card {
+	  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+	  max-width: 370px;
+	  margin: auto;
+	  text-align: center;
+	  font-family: calibri;
+	}
+	
+	.title {
+	  color: grey;
+	  font-size: 18px;
+	}
+	.title2 {
+			  padding:75px;
+			 text-align: center;
+			  color: black;
+			  font-size: 18px;
+			}
+	.nip{
+	  color: blue;
+	  font-size: 22px;
+	}
+	
+	.instansi{
+	  color: purple;
+	  font-size: 18px;
+	}
+	.isi{
+		font-size: 18px;
+	}
+	
+	.tombol {
+	  border: none;
+	  outline: 0;
+	  display: inline-block;
+	  padding: 8px;
+	  color: white;
+	  background-color: #000;
+	  text-align: center;
+	  cursor: pointer;
+	  width: 100%;
+	  font-size: 18px;
+	}
+	
+	a {
+	  text-decoration: none;
+	  font-size: 22px;
+	  color: white;
+	}
+	
+	button:hover, a:hover {
+	  opacity: 0.7;
+	}
+	</style>
+</head>
+<body>
+
+	<nav th:replace="fragments/fragment :: navbar (navbarTitle='Lihat Pegawai')"></nav>
+	
+	<div class="title2">
+		<h2>SIPEG - Sistem Informasi Kepegawaian</h2>
+		<h1> Detail Pegawai</h1>		
+	</div>
+	
+	<h2 th:text="' Detail Data Pegawai - '+ ${pegawai.nip}" style="text-align:center"></h2>
+	<br>
+	<div class="card">
+	  <img src="/image/profile.jpg" alt="profile" style="width:100%">
+	  <h1 th:text="${pegawai.nama}"></h1>
+	  <p class="nip" th:text="'NIP - ' + ${pegawai.nip}"></p>
+	  <p class="instansi" th:text="${instansi.nama} + ' - ' + ${provinsi.nama}"></p>
+	  <div th:each= "jabatan : ${jabatanList}">
+	    <p class="title" th:text="${jabatan.nama}" style="text-align:center"></p>
+	  </div>
+	  <div class="isi" style="margin: 24px 0;">
+	   <p th:text="'Tahun Masuk : ' + ${pegawai.tahunMasuk}"></p>
+	   <p th:text="'TTL : ' + ${pegawai.tempatLahir} + ', ' + ${pegawai.tanggalLahir}"></p>
+	   <p th:text="'Gaji Pokok : ' + 'Rp. ' + ${gaji}"></p>
+	 </div>
+	 <p><button class="tombol"><a th:href="@{'/pegawai/ubah?nip=' + ${pegawai.nip}}">Update Data Pegawai</a></button></p>
+	</div>
+
+</body>
+</html>
