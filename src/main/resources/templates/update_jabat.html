@@ -2,7 +2,7 @@
 <html xmnls:th="http://www.thymeleaf.org">
 <head>
 	<object th:include="fragments/fragment :: headerFragment"></object>
-	<title id="pageTitle">Error Page</title>
+	<title id="pageTitle">Update Jabatan</title>
 	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 	<style>
@@ -15,13 +15,13 @@
 	</style>
 </head>
 <body>
-	<nav th:replace="fragments/fragment :: navbar (navbarTitle='Error Page')"></nav>
+	<nav th:replace="fragments/fragment :: navbar (navbarTitle='Update Jabatan')"></nav>
+
 	<div class="title">
 		<h2>SIPEG - Sistem Informasi Kepegawaian</h2>
-		<h3>Halaman tidak dapat ditemukan.</h3>
-	<p>Mohon masukkan nilai dengan tepat:)</p>
-			
-	</div>
-
+	<h3 th:text="' Jabatan berhasil diubah.'"></h3>
+	<a th:href="@{'/jabatan/view?idJabatan=' + ${id}}">Klik untuk Melihat</a>
+	
+</div>
 </body>
 </html>

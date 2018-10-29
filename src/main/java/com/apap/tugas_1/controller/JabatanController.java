@@ -61,10 +61,12 @@ public class JabatanController {
 	 * Mensimpan data jabatan
 	 */
 	@RequestMapping(value = "/jabatan/tambah", method = RequestMethod.POST)
-	private String addJabatanSubmit(@ModelAttribute JabatanModel jabatan) {
+	private String addJabatanSubmit(@ModelAttribute JabatanModel jabatan, Model model) {
 		jabatanService.addJabatan(jabatan);
 		
-		return "tambah";
+		model.addAttribute("id", jabatan.getId());
+		
+		return "tambah_jabat";
 	}
 	
 	/*
@@ -85,7 +87,9 @@ public class JabatanController {
 	@RequestMapping(value="/jabatan/ubah", method = RequestMethod.POST)
 	private String updateJabatan(@ModelAttribute JabatanModel jabatan, Model model) {
 		jabatanService.updateJabatan(jabatan.getId(), jabatan);
-		return "update";
+
+		model.addAttribute("id", jabatan.getId());
+		return "update_jabat";
 	}
 	
 	/*
